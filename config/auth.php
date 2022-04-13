@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'passport', // set this to passport
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -107,5 +113,9 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    'verification' => [
+        'expire' => 60
+    ],
 
 ];
