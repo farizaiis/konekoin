@@ -40,12 +40,10 @@ class RegisteredUserController extends BaseController
      *             mediaType="multipart/form-data",
      *             @OA\Schema(
      *                 type="object",
-     *                 required={"fullname", "email", "password", "password_confirmation", "username", "role"},
+     *                 required={"fullname", "email", "password", "role"},
      *                 @OA\Property(property="email", type="text"),
      *                 @OA\Property(property="password", type="password"),
-     *                 @OA\Property(property="password_confirmation", type="password"),
      *                 @OA\Property(property="fullname", type="text"),
-     *                 @OA\Property(property="username", type="text"),
      *                 @OA\Property(property="role", type="text"),
      *             ),
      *         ),

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role');
             $table->unsignedBigInteger('balance')->default(0)->nullable();
             $table->string('ktp_number')->nullable();
             $table->string('ktp_file')->nullable();
