@@ -15,12 +15,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('user_konekios_id')->unique()->nullable();
+            $table->unsignedBigInteger('user_konekita_id')->unique()->nullable();
+            $table->string('fullname');
+            $table->string('phone_number')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('balance')->default(0)->nullable();
+            $table->string('ktp_number')->nullable();
+            $table->string('ktp_file')->nullable();
+            $table->boolean('is_premium')->default(false)->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
