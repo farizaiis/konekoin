@@ -5,6 +5,513 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/v1/bank_accounts": {
+            "get": {
+                "tags": [
+                    "Bank Account"
+                ],
+                "summary": "Bank Account List",
+                "description": "Bank Account List here",
+                "operationId": "bankAccountList",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Paginate size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Paginate page",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bank Accounts retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Bank Account"
+                ],
+                "summary": "Bank Account Create",
+                "description": "Bank Account Create here",
+                "operationId": "bankAccountCreate",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "owner_name",
+                                    "bank_name",
+                                    "account_number"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "owner_name": {
+                                        "type": "text"
+                                    },
+                                    "bank_name": {
+                                        "type": "text"
+                                    },
+                                    "account_number": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Bank Account created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Validation Error."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/bank_accounts/{id}": {
+            "get": {
+                "tags": [
+                    "Bank Account"
+                ],
+                "summary": "Bank Account Retrieve",
+                "description": "Bank Account Retrieve here",
+                "operationId": "bankAccountRetrieve",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Bank Account id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bank Account retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bank Account not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Bank Account"
+                ],
+                "summary": "Bank Account Update",
+                "description": "Bank Account Update here",
+                "operationId": "bankAccountUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Bank Account id",
+                        "required": true
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Bank Account owner user id",
+                        "required": true
+                    },
+                    {
+                        "name": "owner_name",
+                        "in": "query",
+                        "description": "Bank owner name",
+                        "required": true
+                    },
+                    {
+                        "name": "bank_name",
+                        "in": "query",
+                        "description": "Bank name",
+                        "required": true
+                    },
+                    {
+                        "name": "account_number",
+                        "in": "query",
+                        "description": "Bank Account number",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bank Account updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error."
+                    },
+                    "404": {
+                        "description": "Bank Account not found."
+                    },
+                    "409": {
+                        "description": "Failed to update the Bank Account."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Bank Account"
+                ],
+                "summary": "Bank Account Delete",
+                "description": "Bank Account Delete here",
+                "operationId": "bankAccountDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Bank Account id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bank Account deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed to delete the Bank Account."
+                    },
+                    "404": {
+                        "description": "Bank Account not found."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/history_balances": {
+            "get": {
+                "tags": [
+                    "History Balance"
+                ],
+                "summary": "History Balance List",
+                "description": "History Balance List here",
+                "operationId": "HistoryBalanceList",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Paginate size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Paginate page",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "History Balances retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "History Balance"
+                ],
+                "summary": "History Balance Create",
+                "description": "History Balance Create here",
+                "operationId": "HistoryBalanceCreate",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "type_transaction",
+                                    "title",
+                                    "description",
+                                    "amount",
+                                    "app_name",
+                                    "date"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "type_transaction": {
+                                        "type": "text"
+                                    },
+                                    "title": {
+                                        "type": "text"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    },
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "app_name": {
+                                        "type": "text"
+                                    },
+                                    "date": {
+                                        "type": "text"
+                                    },
+                                    "status": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "History Balance created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Validation Error."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/history_balances/{id}": {
+            "get": {
+                "tags": [
+                    "History Balance"
+                ],
+                "summary": "History Balance Retrieve",
+                "description": "History Balance Retrieve here",
+                "operationId": "HistoryBalanceRetrieve",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "History Balance id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "History Balance retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "History Balance not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "History Balance"
+                ],
+                "summary": "History Balance Update",
+                "description": "History Balance Update here",
+                "operationId": "HistoryBalanceUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "History Balance id",
+                        "required": true
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "History Balance owner user id",
+                        "required": true
+                    },
+                    {
+                        "name": "type_transaction",
+                        "in": "query",
+                        "description": "History Balance type transaction",
+                        "required": false
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "History Balance title",
+                        "required": false
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "History Balance description",
+                        "required": false
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "description": "History Balance amount",
+                        "required": false
+                    },
+                    {
+                        "name": "app_name",
+                        "in": "query",
+                        "description": "History Balance app name konekita/konekios",
+                        "required": false
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "History Balance status Berhasil/Menunggu/Ditolak",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "History Balance date",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "History Balance updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error."
+                    },
+                    "404": {
+                        "description": "History Balance not found."
+                    },
+                    "409": {
+                        "description": "Failed to update the History Balance."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "History Balance"
+                ],
+                "summary": "History Balance Delete",
+                "description": "History Balance Delete here",
+                "operationId": "HistoryBalanceDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "History Balance id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "History Balance deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed to delete the History Balance."
+                    },
+                    "404": {
+                        "description": "History Balance not found."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/users": {
             "get": {
                 "tags": [

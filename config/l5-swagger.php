@@ -289,7 +289,7 @@ return [
          * Constants which can be used in annotations
          */
         'constants' => [
-            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://konekita-api-dev.herokuapp.com/'),
+            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://konekoin-api-panas.herokuapp.com/'),
         ],
     ],
 ];
