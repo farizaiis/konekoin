@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\v1\BankAccountController;
+use App\Http\Controllers\Api\v1\HistoryBalanceController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +22,18 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('/v1/users', [UserController::class, 'index']);
     Route::get('/v1/users/{id}', [UserController::class, 'show']);
     Route::put('/v1/users/{id}', [UserController::class, 'update']);
+
+    //Bank Account Entity
+    Route::post('/v1/bank_accounts', [BankAccountController::class, 'store']);
+    Route::get('/v1/bank_accounts', [BankAccountController::class, 'index']);
+    Route::get('/v1/bank_accounts/{id}', [BankAccountController::class, 'show']);
+    Route::put('/v1/bank_accounts/{id}', [BankAccountController::class, 'update']);
+    Route::delete('/v1/bank_accounts/{id}', [BankAccountController::class, 'destroy']);
+
+    //History Balance Entity
+    Route::post('/v1/history_balances', [HistoryBalanceController::class, 'store']);
+    Route::get('/v1/history_balances', [HistoryBalanceController::class, 'index']);
+    Route::get('/v1/history_balances/{id}', [HistoryBalanceController::class, 'show']);
+    Route::put('/v1/history_balances/{id}', [HistoryBalanceController::class, 'update']);
+    Route::delete('/v1/history_balances/{id}', [HistoryBalanceController::class, 'destroy']);
 });
