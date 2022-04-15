@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 /**
      * @OA\Info(
      *      version="1.0.0",
-     *      title="Konekita Open API",
+     *      title="Konekoin Open API",
      * )
      */
 class Controller extends BaseController
