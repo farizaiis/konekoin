@@ -21,6 +21,9 @@ Route::group(['middleware' => ['auth:api']], function() {
     //User Entity
     Route::get('/v1/users', [UserController::class, 'index']);
     Route::get('/v1/users/{id}', [UserController::class, 'show']);
+    Route::get('/v1/users/by_konekita_id/{konekita_id}', [UserController::class, 'show_by_konekita_id']);
+    Route::get('/v1/users/by_konekios_id/{konekios_id}', [UserController::class, 'show_by_konekios_id']);
+    Route::get('/v1/users/by_email/{email}', [UserController::class, 'show_by_email']);
     Route::put('/v1/users/{id}', [UserController::class, 'update']);
 
     //Bank Account Entity

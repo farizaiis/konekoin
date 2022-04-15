@@ -95,6 +95,39 @@ class UserController extends BaseController
         return $this->sendResponse(new UserResource($User), 'User retrieved successfully.');
     }
 
+    public function show_by_email(Request $request, $email)
+    {
+        $User = User::where('email', $email)->first();
+
+        if(is_null($User)) {
+            return $this->sendError('User not found.');
+        }
+
+        return $this->sendResponse(new UserResource($User), 'User retrieved successfully.');
+    }
+
+    public function show_by_konekita_id(Request $request, $konekita_id)
+    {
+        $User = User::where('user_konekita_id', $konekita_id)->first();
+
+        if(is_null($User)) {
+            return $this->sendError('User not found.');
+        }
+
+        return $this->sendResponse(new UserResource($User), 'User retrieved successfully.');
+    }
+
+    public function show_by_konekios_id(Request $request, $konekios_id)
+    {
+        $User = User::where('user_konekios_id', $konekios_id)->first();
+
+        if(is_null($User)) {
+            return $this->sendError('User not found.');
+        }
+
+        return $this->sendResponse(new UserResource($User), 'User retrieved successfully.');
+    }
+
     /**
     * @OA\Put(
     *     path="/api/v1/users/{id}",
