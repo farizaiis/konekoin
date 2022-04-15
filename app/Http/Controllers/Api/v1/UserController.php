@@ -65,7 +65,7 @@ class UserController extends BaseController
     /**
     * @OA\Get(
     *     path="/api/v1/users/{id}",
-    *     operationId="UserRetrieve",
+    *     operationId="UserRetrieveById",
     *     tags={"User"},
     *     summary="User Retrieve",
     *     description="User Retrieve here",
@@ -95,6 +95,28 @@ class UserController extends BaseController
         return $this->sendResponse(new UserResource($User), 'User retrieved successfully.');
     }
 
+     /**
+    * @OA\Get(
+    *     path="/api/v1/users/by_email/{email}",
+    *     operationId="UserRetrieveByEmail",
+    *     tags={"User"},
+    *     summary="User Retrieve By Email",
+    *     description="User Retrieve by email here",
+    *     security={{"api_key":{}}}, 
+    *     @OA\Parameter(
+    *         name="email",
+    *         in="path",
+    *         description="User email",
+    *         required=true,
+    *     ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="User retrieved successfully",
+    *         @OA\JsonContent()
+    *     ),
+    *     @OA\Response(response=404, description="User Not Found"),
+    * )
+    */
     public function show_by_email(Request $request, $email)
     {
         $User = User::where('email', $email)->first();
@@ -106,6 +128,28 @@ class UserController extends BaseController
         return $this->sendResponse(new UserResource($User), 'User retrieved successfully.');
     }
 
+    /**
+    * @OA\Get(
+    *     path="/api/v1/users/by_konekita_id/{konekita_id}",
+    *     operationId="UserRetrieveByKonekitaId",
+    *     tags={"User"},
+    *     summary="User Retrieve By Konekita Id",
+    *     description="User Retrieve by konekita id here",
+    *     security={{"api_key":{}}}, 
+    *     @OA\Parameter(
+    *         name="konekita_id",
+    *         in="path",
+    *         description="User konekita_id",
+    *         required=true,
+    *     ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="User retrieved successfully",
+    *         @OA\JsonContent()
+    *     ),
+    *     @OA\Response(response=404, description="User Not Found"),
+    * )
+    */
     public function show_by_konekita_id(Request $request, $konekita_id)
     {
         $User = User::where('user_konekita_id', $konekita_id)->first();
@@ -117,6 +161,28 @@ class UserController extends BaseController
         return $this->sendResponse(new UserResource($User), 'User retrieved successfully.');
     }
 
+     /**
+    * @OA\Get(
+    *     path="/api/v1/users/by_konekios_id/{konekios_id}",
+    *     operationId="UserRetrieveByKonekiosId",
+    *     tags={"User"},
+    *     summary="User Retrieve By Konekios Id",
+    *     description="User Retrieve by konekios here",
+    *     security={{"api_key":{}}}, 
+    *     @OA\Parameter(
+    *         name="konekios_id",
+    *         in="path",
+    *         description="User konekios id",
+    *         required=true,
+    *     ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="User retrieved successfully",
+    *         @OA\JsonContent()
+    *     ),
+    *     @OA\Response(response=404, description="User Not Found"),
+    * )
+    */
     public function show_by_konekios_id(Request $request, $konekios_id)
     {
         $User = User::where('user_konekios_id', $konekios_id)->first();
