@@ -71,7 +71,7 @@ class TransactionController extends BaseController
     *            mediaType="multipart/form-data",
     *            @OA\Schema(
     *               type="object",
-    *               required={"user_id", "app", "type", "durianpay_id", "access_token", "customer_id"},
+    *               required={"user_id", "app", "type", "durianpay_id"},
     *               @OA\Property(property="user_id", type="integer"),
     *               @OA\Property(property="app", type="text"),
     *               @OA\Property(property="konekita_order_id", type="integer"),

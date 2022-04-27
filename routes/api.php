@@ -47,3 +47,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::delete('/v1/transactions/{durianpay_id}', [TransactionController::class, 'destroy']);
     Route::put('/v1/transactions/{durianpay_id}', [TransactionController::class, 'update']);
 });
+
+
+//Webhook Durianpay
+Route::post('/v1/transactions/webhook', [TransactionController::class, 'durianpay_webhook']);
