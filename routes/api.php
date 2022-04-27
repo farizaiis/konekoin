@@ -39,4 +39,11 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('/v1/history_balances/{id}', [HistoryBalanceController::class, 'show']);
     Route::put('/v1/history_balances/{id}', [HistoryBalanceController::class, 'update']);
     Route::delete('/v1/history_balances/{id}', [HistoryBalanceController::class, 'destroy']);
+
+    //Transaction Entity
+    Route::post('/v1/transactions', [TransactionController::class, 'store']);
+    Route::get('/v1/transactions', [TransactionController::class, 'index']);
+    Route::get('/v1/transactions/{durianpay_id}', [TransactionController::class, 'show']);
+    Route::delete('/v1/transactions/{durianpay_id}', [TransactionController::class, 'destroy']);
+    Route::put('/v1/transactions/{durianpay_id}', [TransactionController::class, 'update']);
 });
