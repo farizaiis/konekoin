@@ -77,7 +77,7 @@ class TopUpProccessKonekita implements ShouldQueue
 
         $user_konekita = json_decode($get_user->getBody());
 
-        Log::info($user_konekita->data);
+        Log::info($user_konekita->data->balance);
 
         $data_amount = [
             'balance' => $user_konekita->data->balance + $data_order->data->amount
