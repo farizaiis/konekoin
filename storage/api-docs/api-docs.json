@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Konekita Open API",
+        "title": "Konekoin Open API",
         "version": "1.0.0"
     },
     "paths": {
@@ -512,6 +512,303 @@
                 ]
             }
         },
+        "/api/v1/transactions": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Transaction List",
+                "description": "Transaction List here",
+                "operationId": "transactionList",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Paginate size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Paginate page",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transactions retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Transaction Create",
+                "description": "Transaction Create here",
+                "operationId": "transactionCreate",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "app",
+                                    "type",
+                                    "durianpay_id"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "app": {
+                                        "type": "text"
+                                    },
+                                    "konekita_order_id": {
+                                        "type": "integer"
+                                    },
+                                    "konekios_order_id": {
+                                        "type": "integer"
+                                    },
+                                    "konekoin_balance_id": {
+                                        "type": "text"
+                                    },
+                                    "type": {
+                                        "type": "text"
+                                    },
+                                    "durianpay_id": {
+                                        "type": "text"
+                                    },
+                                    "access_token": {
+                                        "type": "text"
+                                    },
+                                    "customer_id": {
+                                        "type": "text"
+                                    },
+                                    "payment_id": {
+                                        "type": "text"
+                                    },
+                                    "signature": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Transaction created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Validation Error."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/transactions/{durianpay_id}": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Transaction Retrieve",
+                "description": "Transaction Retrieve here",
+                "operationId": "transactionRetrieve",
+                "parameters": [
+                    {
+                        "name": "durianpay_id",
+                        "in": "path",
+                        "description": "Transaction durianpay_id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Transaction not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Transaction Update",
+                "description": "Transaction Update here",
+                "operationId": "transactionUpdate",
+                "parameters": [
+                    {
+                        "name": "durianpay_id",
+                        "in": "path",
+                        "description": "Transaction durianpay_id",
+                        "required": true
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id",
+                        "required": false
+                    },
+                    {
+                        "name": "app",
+                        "in": "query",
+                        "description": "Transaction app",
+                        "required": false
+                    },
+                    {
+                        "name": "konekita_order_id",
+                        "in": "query",
+                        "description": "Transaction konekita_order_id",
+                        "required": false
+                    },
+                    {
+                        "name": "konekios_order_id",
+                        "in": "query",
+                        "description": "Transaction konekios_order_id",
+                        "required": false
+                    },
+                    {
+                        "name": "konekoin_balance_id",
+                        "in": "query",
+                        "description": "Transaction konekoin_balance_id",
+                        "required": false
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Transaction type",
+                        "required": false
+                    },
+                    {
+                        "name": "durianpay_id",
+                        "in": "query",
+                        "description": "Transaction durianpay_id",
+                        "required": false
+                    },
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "description": "Transaction access_token",
+                        "required": false
+                    },
+                    {
+                        "name": "customer_id",
+                        "in": "query",
+                        "description": "Transaction customer_id",
+                        "required": false
+                    },
+                    {
+                        "name": "signature",
+                        "in": "query",
+                        "description": "Transaction signature",
+                        "required": false
+                    },
+                    {
+                        "name": "payment_id",
+                        "in": "query",
+                        "description": "Transaction payment_id",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error."
+                    },
+                    "409": {
+                        "description": "Failed to update the Transaction."
+                    },
+                    "404": {
+                        "description": "Transaction not found."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Transaction Delete",
+                "description": "Transaction Delete here",
+                "operationId": "transactionDelete",
+                "parameters": [
+                    {
+                        "name": "durianpay_id",
+                        "in": "path",
+                        "description": "Transaction durianpay_id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed to delete the Transaction."
+                    },
+                    "404": {
+                        "description": "Transaction not found."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/users": {
             "get": {
                 "tags": [
@@ -561,7 +858,7 @@
                 ],
                 "summary": "User Retrieve",
                 "description": "User Retrieve here",
-                "operationId": "UserRetrieve",
+                "operationId": "UserRetrieveById",
                 "parameters": [
                     {
                         "name": "id",
@@ -711,6 +1008,114 @@
                     },
                     "404": {
                         "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users/by_email/{email}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Retrieve By Email",
+                "description": "User Retrieve by email here",
+                "operationId": "UserRetrieveByEmail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User email",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users/by_konekita_id/{konekita_id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Retrieve By Konekita Id",
+                "description": "User Retrieve by konekita id here",
+                "operationId": "UserRetrieveByKonekitaId",
+                "parameters": [
+                    {
+                        "name": "konekita_id",
+                        "in": "path",
+                        "description": "User konekita_id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users/by_konekios_id/{konekios_id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Retrieve By Konekios Id",
+                "description": "User Retrieve by konekios here",
+                "operationId": "UserRetrieveByKonekiosId",
+                "parameters": [
+                    {
+                        "name": "konekios_id",
+                        "in": "path",
+                        "description": "User konekios id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found"
                     }
                 },
                 "security": [

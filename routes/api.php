@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\v1\BankAccountController;
 use App\Http\Controllers\Api\v1\HistoryBalanceController;
+use App\Http\Controllers\Api\v1\TransactionController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

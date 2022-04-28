@@ -100,14 +100,14 @@ class TransactionController extends BaseController
     
         $validator = Validator::make($input, [
             'user_id' => ['required', 'integer'],
-            'app' => ['required', 'integer'],
+            'app' => ['required', 'string'],
             'konekita_order_id' => ['integer'],
             'konekios_order_id' => ['integer'],
             'konekoin_balance_id' => ['string'],
             'type' => ['required', 'string'],
-            'durianpay_id' => ['required', 'string'],
-            'access_token' => ['required', 'string'],
-            'customer_id' => ['required', 'string'],
+            'durianpay_id' => ['string'],
+            'access_token' => ['string'],
+            'customer_id' => ['string'],
             'payment_id' => ['string'],
             'signature' => ['string']
         ]);
@@ -250,7 +250,7 @@ class TransactionController extends BaseController
 
         $validator = Validator::make($input, [
             'user_id' => ['integer'],
-            'app' => ['integer'],
+            'app' => ['string'],
             'konekita_order_id' => ['string'],
             'konekios_order_id' => ['string'],
             'konekoin_balance_id' => ['string'],
