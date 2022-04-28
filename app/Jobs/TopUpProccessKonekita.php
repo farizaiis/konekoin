@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class TopUpProccessKonekita implements ShouldQueue
 {
@@ -76,8 +77,10 @@ class TopUpProccessKonekita implements ShouldQueue
 
         $user_konekita = json_decode($get_user->getBody());
 
+        Log::info($user_konekita);
+
         $data_amount = [
-            'balance' => $user_konekita->data['balance'] + $data_order->data['amount']
+            'balance' => $user_konekita->data->balance + $data_order->data->amount
         ];
 
         $client->request('PUT', env('KONEKITA_URL').'users/'.$this->user->user_konekita_id, [
