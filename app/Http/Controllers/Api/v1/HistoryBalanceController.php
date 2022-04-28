@@ -90,8 +90,6 @@ class HistoryBalanceController extends BaseController
     {
         $input = $request->all();
 
-        $today = date('Y-m-d H:i');
-    
         $validator = Validator::make($input, [
             'user_id' => ['required', 'integer'],
             'type_transaction' => ['required', 'string'],
@@ -100,7 +98,7 @@ class HistoryBalanceController extends BaseController
             'amount' => ['required', 'integer'],
             'app_name' => ['required', 'string', 'in:Konekios,Konekita,konekios,konekita'],
             'status' => ['string', 'in:Menunggu,Berhasil,Ditolak,menunggu,berhasil,ditolak'],
-            'date' => ['required', 'string', 'after_or_equal:'.$today]
+            'date' => ['required', 'string']
         ]);
     
         if($validator->fails()){
@@ -227,8 +225,6 @@ class HistoryBalanceController extends BaseController
     {
         $input = $request->all();
 
-        $today = date('Y-m-d H:i');
-
         $validator = Validator::make($input, [
             'user_id' => ['integer'],
             'type_transaction' => ['string'],
@@ -237,7 +233,7 @@ class HistoryBalanceController extends BaseController
             'amount' => ['integer'],
             'app_name' => ['string', 'in:Konekios,Konekita,konekios,konekita'],
             'status' => ['string', 'in:Menunggu,Berhasil,Ditolak,menunggu,berhasil,ditolak'],
-            'date' => ['string', 'after_or_equal:'.$today]
+            'date' => ['string']
         ]);
    
         if($validator->fails()){
