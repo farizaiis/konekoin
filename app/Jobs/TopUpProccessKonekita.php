@@ -77,7 +77,7 @@ class TopUpProccessKonekita implements ShouldQueue
         $user_konekita = json_decode($get_user->getBody());
 
         $data_amount = [
-            'balance' => $user_konekita->data->balance + $data_order->data->amount
+            'balance' => $user_konekita->data['balance'] + $data_order->data->amount
         ];
 
         $client->request('PUT', env('KONEKITA_URL').'users/'.$this->user->user_konekita_id, [
