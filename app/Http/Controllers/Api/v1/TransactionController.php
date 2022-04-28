@@ -326,7 +326,7 @@ class TransactionController extends BaseController
 
     public function durianpay_webhook(Request $request) {
         if($request->event == 'payment.completed') {
-            $record = Transaction::where('durianpay_id', $request->data['konekita_order_id'])->first();
+            $record = Transaction::where('durianpay_id', $request->data['order_id'])->first();
 
             if(is_null($record)) {
                 return $this->sendError('Transaction not found.', 404);   
