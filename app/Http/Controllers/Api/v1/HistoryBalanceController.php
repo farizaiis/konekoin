@@ -237,7 +237,7 @@ class HistoryBalanceController extends BaseController
             'amount' => ['integer'],
             'app_name' => ['string', 'in:Konekios,Konekita,konekios,konekita'],
             'status' => ['string', 'in:Menunggu,Berhasil,Ditolak,menunggu,berhasil,ditolak'],
-            'date' => ['string', 'date_format:Y-m-d H:i:s', 'after_or_equal:'.$today]
+            'date' => ['string', 'after_or_equal:'.$today]
         ]);
    
         if($validator->fails()){
