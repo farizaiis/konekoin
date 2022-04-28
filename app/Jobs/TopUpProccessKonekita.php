@@ -84,5 +84,14 @@ class TopUpProccessKonekita implements ShouldQueue
         $client->request('PUT', env('KONEKITA_URL').'users/'.$this->user->user_konekita_id, [
             'body' => json_encode($data_amount)
         ]);
+
+        $data_notif = [
+            'user_id' => $this->user->user_konekita_id,
+            'description' => 'Topup sebesar Rp. '.str_replace(',', '.', (number_format($data_order->data->amount))) . ' telah berhasil'
+        ];
+
+        $client->request('POST', env('KONEKITA_URL').'notifications', [
+            'body' => json_encode($data_notif)
+        ]);
     }
 }
