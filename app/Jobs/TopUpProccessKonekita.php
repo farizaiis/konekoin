@@ -70,10 +70,10 @@ class TopUpProccessKonekita implements ShouldQueue
         ];
 
         $client->request('PUT', env('KONEKITA_URL').'bank_orders/'.$this->record->konekita_order_id, [
-            'body' => json_encode($data_status)
+            'json' => json_encode($data_status)
         ]);
 
-        $get_user = $client->request('GET', env('KONEKITA_URL').'users/'.$this->record->user_konekita_id);
+        $get_user = $client->request('GET', env('KONEKITA_URL').'users/'.$this->user->user_konekita_id);
 
         $user_konekita = json_decode($get_user->getBody());
 
@@ -82,7 +82,7 @@ class TopUpProccessKonekita implements ShouldQueue
         ];
 
         $client->request('PUT', env('KONEKITA_URL').'users/'.$this->user->user_konekita_id, [
-            'body' => json_encode($data_amount)
+            'json' => json_encode($data_amount)
         ]);
     }
 }
