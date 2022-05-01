@@ -66,7 +66,8 @@ class TopUpProccessKonekita implements ShouldQueue
         $data_order = json_decode($get_order->getBody());
 
         $data_status = [
-            'status' => 'Lunas'
+            'status' => 'Lunas',
+            'description' => 'Penambahan saldo Konekoin sejumlah Rp. '.str_replace(',', '.', (number_format($data_order->data->amount))).' berhasil.',
         ];
 
         $client->request('PUT', env('KONEKITA_URL').'bank_orders/'.$this->record->konekita_order_id, [

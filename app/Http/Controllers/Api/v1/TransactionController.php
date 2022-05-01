@@ -356,11 +356,19 @@ class TransactionController extends BaseController
                                             'balance' => $user->balance + $balance->amount
                                         ]);
                                         $user->save();
+
+                                        $balance->update([
+                                            'status' => 'Lunas',
+                                            'description' => 'Topup sebesar Rp. '.str_replace(',', '.', (number_format($balance->amount))) . ' telah berhasil'
+                                        ]);   
+
+                                        $balance->save();
                                     }
 
                                     $balance->update([
                                         'status' => 'Lunas'
                                     ]);
+
                                     $balance->save();
                                 }
                             }
