@@ -94,6 +94,12 @@ class TopUpProccessKonekita implements ShouldQueue
             'body' => json_encode($data_notif)
         ]);
 
+        if($user_konekita->data->role == 'Pekarya') {
+            $web_url = 'https://konekita-five.vercel.app/';
+        } else {
+            $web_url = 'https://konekita-penikmat.vercel.app/';
+        }
+
         $notif_payload = [
             "app_id" => "043eeb97-d7e0-498a-ae50-1136e6209761",
             "contents" => [
@@ -102,7 +108,7 @@ class TopUpProccessKonekita implements ShouldQueue
             "headings" => [
                 "en" => "Topup Status"
             ],
-            "web_url" => "https://konekita-five.vercel.app/",
+            "web_url" => $web_url,
             "include_external_user_ids" => array((string)$this->user->user_konekita_id)
         ];
 
