@@ -93,5 +93,29 @@ class TopUpProccessKonekita implements ShouldQueue
         $client->request('POST', env('KONEKITA_URL').'notifications', [
             'body' => json_encode($data_notif)
         ]);
+
+        $notif_payload = [
+            "app_id" => "043eeb97-d7e0-498a-ae50-1136e6209761",
+            "contents" => [
+                "en" => 'Topup sebesar Rp. '.str_replace(',', '.', (number_format($data_order->data->amount))) . ' telah berhasil'
+            ],
+            "headings" => [
+                "en" => "Topup Status"
+            ],
+            "web_url" => "https://konekita-five.vercel.app/",
+            "include_external_user_ids" => array((string)$this->user->user_konekita_id)
+        ];
+
+        $client_notif = new Client([
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+                'Authorization' => 'Basic NTkwMmFkZTUtYTExYS00YzgxLWIwZWItNTBjMGUxZjExZDM4'
+            ]
+        ]);
+
+        $client_notif->request('POST', "https://onesignal.com/api/v1/notifications", [
+            'body' => json_encode($notif_payload)
+        ]);
     }
 }
