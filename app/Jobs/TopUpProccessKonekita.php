@@ -96,13 +96,17 @@ class TopUpProccessKonekita implements ShouldQueue
         ]);
 
         if($user_konekita->data->role == 'Pekarya') {
+            $app_id = env('ONESIGNAL_APPID_PEKARYA');
             $web_url = 'https://konekita-five.vercel.app/';
+            $api_key = env('ONESIGNAL_APIKEY_PEKARYA');
         } else {
+            $app_id = env('ONESIGNAL_APPID_PENIKMAT');
             $web_url = 'https://konekita-penikmat.vercel.app/';
+            $api_key = env('ONESIGNAL_APIKEY_PENIKMAT');
         }
 
         $notif_payload = [
-            "app_id" => "043eeb97-d7e0-498a-ae50-1136e6209761",
+            "app_id" => $app_id,
             "contents" => [
                 "en" => 'Topup sebesar Rp. '.str_replace(',', '.', (number_format($data_order->data->amount))) . ' telah berhasil'
             ],
@@ -117,7 +121,7 @@ class TopUpProccessKonekita implements ShouldQueue
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
-                'Authorization' => 'Basic NTkwMmFkZTUtYTExYS00YzgxLWIwZWItNTBjMGUxZjExZDM4'
+                'Authorization' => 'Basic '.$api_key
             ]
         ]);
 
